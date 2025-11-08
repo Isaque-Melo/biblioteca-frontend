@@ -1,0 +1,43 @@
+<h2>Criar Novo Autor</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="nome">Nome: </label>
+    <input
+      type="text"
+      id="nome"
+      name="nome"
+      [(ngModel)]="novoAutor.nome"
+      required>
+  </div>
+  <div>
+    <label for="nacionalidade">Nacionalidade: </label>
+    <input
+      type="text"
+      id="nacionalidade"
+      name="nacionalidade"
+      [(ngModel)]="novoAutor.nacionalidade"
+      required>
+  </div>
+  <button type="submit">Salvar</button>
+</form>
+
+<hr>
+
+<h1>Lista de Autores</h1>
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Nacionalidade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let autor of autores">
+      <td>{{ autor.id }}</td>
+      <td>{{ autor.nome }}</td>
+      <td>{{ autor.nacionalidade }}</td>
+    </tr>
+  </tbody>
+</table>
