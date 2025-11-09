@@ -1,0 +1,52 @@
+/* Em: src/app/autor-form/autor-form.css */
+
+/* Estilos do Dropdown de Nacionalidade */
+.dropdown-menu {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 0;
+  margin: 4px 0 0 0;
+  list-style-type: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+.flag-img {
+  width: 24px;
+  height: auto;
+  margin-right: 10px;
+  border: 1px solid #eee;
+}
+.dropdown-item span {
+  font-size: 0.95rem;
+}
+
+/* Mensagem de erro vermelha */
+.validation-error {
+  color: #dc3545; /* Vermelho 'danger' */
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+/* Borda vermelha no input inválido (opcional, mas recomendado) */
+form.ng-submitted input.ng-invalid {
+  border-color: #dc3545;
+}
+
+/* Tira a 'sombra' vermelha do Firefox */
+form.ng-submitted input.ng-invalid:focus {
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}

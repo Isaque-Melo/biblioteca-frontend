@@ -4,11 +4,12 @@ import { Component, OnInit } from '@angular/core';
 import { AutorService } from '../services/autor';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-autores',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './autores.html',
   styleUrls: ['./autores.css']
 })
@@ -29,13 +30,11 @@ export class AutoresComponent implements OnInit { // Implemente OnInit
       this.autores = dados;
     });
   }
-  onSubmit() {
-    this.autorService.criarAutor(this.novoAutor)
-      .subscribe((autorQueFoiSalvo) => {
-        this.autores = [...this.autores, autorQueFoiSalvo];
 
-        this.novoAutor = { nome: '', nacionalidade: '' };
-      });
+  onDelete(id: number) {
+    this.autorService.deletarAutor(id).subscribe(() => {
+      this.autores = this.autores.filter(autor => autor.id !== id);
+    });
   }
 }
 

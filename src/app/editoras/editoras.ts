@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-editoras',
   imports: [],
   templateUrl: './editoras.html',
-  styleUrl: './editoras.css',
+  styleUrls: ['./editoras.css'],
 })
-export class Editoras {
+export class EditorasComponent {
 
 }
