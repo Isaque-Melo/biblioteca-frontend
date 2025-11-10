@@ -15,9 +15,11 @@ import { RouterModule } from '@angular/router';
 })
 export class AutoresComponent implements OnInit { // Implemente OnInit
 
-  // COLE A LÓGICA QUE ESTAVA NO app.component AQUI:
   autores: any[] = [];
   novoAutor = { nome: '', nacionalidade: '' };
+
+  modalDelecaoVisivel: boolean = false;
+  autorParaDeletarId: number | null = null;
 
   constructor(private autorService: AutorService) {}
 
@@ -32,9 +34,22 @@ export class AutoresComponent implements OnInit { // Implemente OnInit
   }
 
   onDelete(id: number) {
-    this.autorService.deletarAutor(id).subscribe(() => {
-      this.autores = this.autores.filter(autor => autor.id !== id);
-    });
+    this.autorParaDeletarId = id;
+    this.modalDelecaoVisivel = true;
+};
+  confirmarDelecao() {
+    if (this.autorParaDeletarId !== null) {
+      this.autorService.deletarAutor(this.autorParaDeletarId).subscribe(() => {
+        this.carregarAutores();
+        this.modalDelecaoVisivel = false;
+        this.autorParaDeletarId = null;
+      });
+    }
+  }
+  cancelarDelecao() {
+    this.modalDelecaoVisivel = false;
+    this.autorParaDeletarId = null;
   }
 }
+
 
