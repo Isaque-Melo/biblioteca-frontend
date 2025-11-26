@@ -1,33 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Autor } from '../models/autor.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AutorService {
 
-  // A URL da sua API no backend Spring
   private apiUrl = 'http://localhost:8081/api/autores';
 
-  // Injetamos o HttpClient aqui
   constructor(private http: HttpClient) { }
 
-  // Método para buscar todos os autores
-  getAutores(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  getAutores(): Observable<Autor[]> {
+    return this.http.get<Autor[]>(this.apiUrl);
   }
 
-  // (Aqui você adicionaria os métodos para criar, editar, deletar...)
-  criarAutor(autor: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, autor);
+  criarAutor(autor: any): Observable<Autor> {
+    return this.http.post<Autor>(this.apiUrl, autor);
   }
 
-  editarAutor(autor: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${autor.id}`, autor);
+  editarAutor(autor: any): Observable<Autor> {
+    return this.http.put<Autor>(`${this.apiUrl}/${autor.id}`, autor);
   }
 
-  deletarAutor(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  deletarAutor(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
