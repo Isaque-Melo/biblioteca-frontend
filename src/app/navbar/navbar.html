@@ -8,4 +8,10 @@
   <a routerLink="/editoras" style="color: white; margin: 15px; text-decoration: none;">
     Editoras
   </a>
+  <div style="margin-left: auto;"> <a *ngIf="!verificarlogin()" routerLink="/login" class="btn btn-outline-light btn-sm">Entrar</a>
+    
+    <button *ngIf="verificarlogin()" (click)="Sair()" class="btn btn-danger btn-sm">
+      <i class="bi bi-box-arrow-right"></i> Sair
+    </button>
+  </div>
 </nav>
