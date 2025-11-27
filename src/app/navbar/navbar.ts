@@ -12,11 +12,19 @@ import { AuthService } from '../services/auth';
 export class Navbar {
   constructor(private authService: AuthService) {}
 
-  usuarioNome = 'ADMIN';
-  usuarioCartao = '123123';
   menuPerfilAberto = false;
   public verificarlogin() {
     return this.authService.isLogado();
+  }
+
+  get usuarioNome(): string {
+    const usuario = this.authService.obterDadosUsuario(); 
+    return usuario ? usuario.nome : 'Visitante';
+  }
+
+  get usuarioCartao(): string {
+    const usuario = this.authService.obterDadosUsuario(); 
+    return usuario ? usuario.cartao : '---';
   }
 
   toggleMenuPerfil() {
