@@ -1,0 +1,177 @@
+/* --- CONTAINER PRINCIPAL --- */
+.navbar-container {
+  background-color: #212529; /* Fundo escuro */
+  color: white;
+  height: 64px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 1000;
+}
+
+/* --- LOGO --- */
+.navbar-brand {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.navbar-brand i { color: #0d6efd; }
+
+/* --- LINKS DE NAVEGAÇÃO --- */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: white;
+}
+
+/* --- ÁREA DO PERFIL (DIREITA) --- */
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.profile-container {
+  position: relative; /* Importante para o dropdown absoluto */
+}
+
+/* Botão do Ícone de Perfil */
+.profile-icon-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-icon-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* --- DROPDOWN MENU (O balãozinho) --- */
+.profile-dropdown {
+  position: absolute;
+  top: 120%; /* Logo abaixo do ícone */
+  right: 0;   /* Alinhado à direita */
+  width: 260px;
+  background-color: white;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  overflow: hidden;
+  animation: fadeIn 0.2s ease-out;
+  z-index: 1002; /* Acima de tudo */
+}
+
+/* Cabeçalho do Dropdown */
+.dropdown-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #f8f9fa;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #e9ecef;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #6c757d;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-role {
+  font-weight: bold;
+  color: #0d6efd; /* Azul Admin */
+}
+
+.user-card {
+  color: #6c757d;
+  font-size: 0.8rem;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #e9ecef;
+  margin: 0;
+}
+
+/* Itens do Menu */
+.dropdown-item {
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 12px 20px;
+  text-align: left;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #333;
+  transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown-item.danger {
+  color: #dc3545;
+}
+.dropdown-item.danger:hover {
+  background-color: #fff5f5;
+}
+
+/* Fundo transparente para fechar ao clicar fora */
+.backdrop {
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  width: 100vw; 
+  height: 100vh;
+  z-index: 1001; /* Atrás do dropdown, na frente do resto */
+  cursor: default;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .nav-link { font-size: 0.9rem; }
+  .navbar-brand span { display: none; } /* Esconde texto 'Biblioteca' no celular */
+}

@@ -12,10 +12,18 @@ import { AuthService } from '../services/auth';
 export class Navbar {
   constructor(private authService: AuthService) {}
 
+  usuarioNome = 'ADMIN';
+  usuarioCartao = '123123';
+  menuPerfilAberto = false;
   public verificarlogin() {
     return this.authService.isLogado();
   }
+
+  toggleMenuPerfil() {
+    this.menuPerfilAberto = !this.menuPerfilAberto;
+  }
   Sair() {
+    this.menuPerfilAberto = false;
     this.authService.logout();
   }
 

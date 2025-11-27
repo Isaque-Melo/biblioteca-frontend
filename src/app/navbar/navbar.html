@@ -1,17 +1,48 @@
-<nav style="background-color: #333; padding: 20px; font-family: sans-serif;">
-  <a routerLink="/autores" style="color: white; margin: 15px; text-decoration: none;">
-    Autores
+<nav class="navbar-container">
+  <a routerLink="/" class="navbar-brand">
+    <i class="bi bi-book-half"></i>
+    <span>Biblioteca</span>
   </a>
-  <a routerLink="/livros" style="color: white; margin: 15px; text-decoration: none;">
-    Livros
-  </a>
-  <a routerLink="/editoras" style="color: white; margin: 15px; text-decoration: none;">
-    Editoras
-  </a>
-  <div style="margin-left: auto;"> <a *ngIf="!verificarlogin()" routerLink="/login" class="btn btn-outline-light btn-sm">Entrar</a>
+
+  <div class="nav-links">
+    <a routerLink="/livros" routerLinkActive="active" class="nav-link">Livros</a>
+    <a routerLink="/autores" routerLinkActive="active" class="nav-link">Autores</a>
+    <a routerLink="/editoras" routerLinkActive="active" class="nav-link">Editoras</a>
+  </div>
+
+  <div class="navbar-right">
     
-    <button *ngIf="verificarlogin()" (click)="Sair()" class="btn btn-danger btn-sm">
-      <i class="bi bi-box-arrow-right"></i> Sair
-    </button>
+    <a *ngIf="!verificarlogin()" routerLink="/login" class="btn btn-outline-light btn-sm">
+      Entrar
+    </a>
+
+    <div *ngIf="verificarlogin()" class="profile-container">
+      
+      <button class="profile-icon-btn" (click)="toggleMenuPerfil()">
+        <i class="bi bi-person-circle"></i>
+      </button>
+
+      <div class="profile-dropdown" *ngIf="menuPerfilAberto">
+        
+        <div class="dropdown-header">
+          <div class="user-avatar">
+            <i class="bi bi-person-fill"></i>
+          </div>
+          <div class="user-details">
+            <span class="user-role">{{ usuarioNome }}</span>
+            <small class="user-card">Cartão: {{ usuarioCartao }}</small>
+          </div>
+        </div>
+
+        <div class="dropdown-divider"></div>
+
+        <button (click)="Sair()" class="dropdown-item danger">
+          <i class="bi bi-box-arrow-right"></i> Sair
+        </button>
+      </div>
+
+      <div *ngIf="menuPerfilAberto" class="backdrop" (click)="menuPerfilAberto = false"></div>
+    </div>
+
   </div>
 </nav>
