@@ -5,14 +5,27 @@ import { EditorasComponent } from './editoras/editoras';
 import { AutorFormComponent } from './autores/autor-form';
 import { LoginComponent } from './login/login';
 import { RegistroComponent } from './registro/registro';
+import { LivroFormComponent } from './livros/livro-form';
+import { EditoraFormComponent } from './editoras/editora-form';
+
 
 export const routes: Routes = [
+  // autores
   { path: 'autores', component: AutoresComponent},
-  { path: 'livros', component: LivrosComponent},
-  { path: 'editoras', component: EditorasComponent},
   { path: 'autores/novo', component: AutorFormComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'registrar', component: RegistroComponent},
+
+  // livros
+  { path: 'livros', component: LivrosComponent},
+  { path: 'livros/novo', component: LivroFormComponent},
+
+  // editoras
+  { path: 'editoras', component: EditorasComponent},
+  {path: 'editoras/novo', component: EditoraFormComponent},
+
+  // auth
+    { path: 'login', component: LoginComponent},
+    { path: 'registrar', component: RegistroComponent},
+
 
 
   // levar para o livros como principal ou rota invalida
