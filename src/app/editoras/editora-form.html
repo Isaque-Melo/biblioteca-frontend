@@ -1,0 +1,28 @@
+<div class="page-container">
+  <div class="form-card">
+    <h2><i class="bi bi-building-add"></i> Nova Editora</h2>
+
+    <form (ngSubmit)="onSubmit()" #form="ngForm">
+      
+      <div class="form-group">
+        <label for="nome">Nome da Editora:</label>
+        <input type="text" id="nome" name="nome" 
+               [(ngModel)]="editora.nome" required 
+               placeholder="Ex: Companhia das Letras">
+      </div>
+
+      <div class="form-group">
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" name="cidade" 
+               [(ngModel)]="editora.cidade" required
+               placeholder="Ex: São Paulo">
+      </div>
+
+      <div class="mt-4">
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Salvar</button>
+        <a routerLink="/editoras" class="btn btn-secondary">Cancelar</a>
+      </div>
+
+    </form>
+  </div>
+</div>
