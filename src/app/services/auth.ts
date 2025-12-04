@@ -24,7 +24,7 @@ export class AuthService {
 
   public isAdmin(): boolean {
     const dadosUsuario = this.obterDadosUsuario();
-    return dadosUsuario && dadosUsuario.role === 'Admin';
+    return dadosUsuario && dadosUsuario.role === 'ROLE_ADMIN';
   }
 
   registrar(dados: any): Observable<any> {
