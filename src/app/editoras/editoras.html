@@ -1,1 +1,47 @@
-<p>editoras works!</p>
+<div class="page-container">
+  <div class="header-lista">
+    <h2><i class="bi bi-building"></i> Lista de Editoras</h2>
+    
+    <a *ngIf="usuarioEhAdmin" routerLink="/editoras/novo" class="btn btn-primary">
+      <i class="bi bi-plus-lg"></i> Nova Editora
+    </a>
+  </div>
+
+  <table class="tabela-lista"> <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Cidade</th>
+        <th *ngIf="usuarioEhAdmin" class="col-acoes">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let editora of editoras">
+        <td>{{ editora.id }}</td>
+        <td>{{ editora.nome }}</td>
+        <td>{{ editora.cidade }}</td>
+        
+        <td *ngIf="usuarioEhAdmin" class="col-acoes">
+          <button (click)="onDelete(editora.id)" class="btn btn-danger btn-sm">
+            <i class="bi bi-trash"></i> Deletar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="modal-backdrop" *ngIf="modalDelecaoVisivel">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4><i class="bi bi-exclamation-triangle-fill"></i> Confirmar Deleção</h4>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja deletar esta editora?
+      </div>
+      <div class="modal-footer">
+        <button (click)="cancelarDelecao()" class="btn btn-secondary">Cancelar</button>
+        <button (click)="confirmarDelecao()" class="btn btn-danger">Sim, Deletar</button>
+      </div>
+    </div>
+  </div>
+</div>

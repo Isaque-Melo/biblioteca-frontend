@@ -1,1 +1,54 @@
-<p>livros works!</p>
+<div class="page-container">
+  <div class="header-lista">
+    <h2><i class="bi bi-book-half"></i> Catálogo de Livros</h2>
+    
+    <a *ngIf="usuarioEhAdmin" routerLink="/livros/novo" class="btn btn-primary">
+      <i class="bi bi-plus-lg"></i> Novo Livro
+    </a>
+  </div>
+
+  <table class="tabela-lista"> <thead>
+      <tr>
+        <th>Título</th>
+        <th>Ano</th>
+        <th>Editora</th>
+        <th>Autores</th>
+        <th *ngIf="usuarioEhAdmin" class="col-acoes">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let livro of livros">
+        <td>{{ livro.titulo }}</td>
+        <td>{{ livro.anoPublicacao }}</td>
+        <td>{{ livro.nomeEditora || '---' }}</td>
+        
+        <td>
+          <span *ngFor="let autorNome of livro.nomesAutores; let last = last">
+            {{ autorNome }}<span *ngIf="!last">, </span>
+          </span>
+        </td>
+
+        <td *ngIf="usuarioEhAdmin" class="col-acoes">
+          <button (click)="onDelete(livro.id)" class="btn btn-danger btn-sm">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="modal-backdrop" *ngIf="modalDelecaoVisivel">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Confirmação</h4>
+      </div>
+      <div class="modal-body">
+        Deletar este livro permanentemente?
+      </div>
+      <div class="modal-footer">
+        <button (click)="cancelarDelecao()" class="btn btn-secondary">Cancelar</button>
+        <button (click)="confirmarDelecao()" class="btn btn-danger">Deletar</button>
+      </div>
+    </div>
+  </div>
+</div>
