@@ -5,6 +5,7 @@ import { AutorService } from '../services/autor';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../services/auth';
 
 @Component({
   selector: 'app-autores',
@@ -21,15 +22,19 @@ export class AutoresComponent implements OnInit { // Implemente OnInit
   modalDelecaoVisivel: boolean = false;
   autorParaDeletarId: number | null = null;
 
-  constructor(private autorService: AutorService) {}
+  constructor(private autorService: AutorService, private authService: AuthService) {}
 
   ngOnInit() {
     this.carregarAutores();
   }
 
+  get usuarioEhAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
   carregarAutores() {
-    this.autorService.getAutores().subscribe(dados => {
-      this.autores = dados;
+    this.autorService.getAutores().subscribe((dados: any) => {
+      this.autores = dados.content;
     });
   }
 

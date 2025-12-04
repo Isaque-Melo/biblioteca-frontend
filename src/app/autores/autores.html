@@ -1,8 +1,8 @@
 <div class="page-container">
   <div class="header-lista">
     <h2><i class="bi bi-person-fill"></i> Lista de Autores</h2>
-    <a routerLink="/autores/novo" class="btn btn-primary">
-      <i class="bi bi-plus-lg"></i> Adicionar Autor
+    <a routerLink="/autores/novo" class="btn btn-primary" *ngIf="usuarioEhAdmin">
+      <i class="bi bi-plus-lg" ></i> Adicionar Autor
     </a>
   </div>
 
@@ -12,7 +12,7 @@
         <th>ID</th>
         <th>Nome</th>
         <th>Nacionalidade</th>
-        <th class="col-acoes">Ações</th>
+        <th class="col-acoes" *ngIf="usuarioEhAdmin">Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -20,7 +20,7 @@
         <td>{{ autor.id }}</td>
         <td>{{ autor.nome }}</td>
         <td>{{ autor.nacionalidade }}</td>
-        <td class="col-acoes">
+        <td class="col-acoes" *ngIf="usuarioEhAdmin">
           <button (click)="onDelete(autor.id)" class="btn btn-danger btn-sm">
             <i class="bi bi-trash"></i> Deletar
           </button>
@@ -51,4 +51,5 @@
       </button>
     </div>
     </div>
+  </div>
 </div>
